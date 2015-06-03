@@ -37,6 +37,9 @@ do
 done
 
 # get the docs from invest-3
+# The makefiles in the doc dir aren't strictly needed since we can do
+# python setup.py build_sphinx and have the sphinx docs built, but I suppose
+# they might be useful to someone.
 echo "Copying docs"
 cp -r $invest_dir/doc .
 rm -r doc/build
