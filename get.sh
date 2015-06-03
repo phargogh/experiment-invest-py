@@ -22,6 +22,17 @@ find natcap/invest -name "*.pyc" \
     -o -name "*.orig" \
     -o -name "*.so" | xargs rm
 
+# remove any empty folders
+echo "Removing any empty package folders"
+for dirname in `ls natcap/invest`
+do
+    full_dirname=natcap/invest/$dirname
+    if [ "`ls $full_dirname`" = "" ]
+    then
+        rm -r $full_dirname
+    fi
+done
+
 # find/replace invest_natcap with natcap.invest
 echo "Replacing 'invest_natcap' with 'natcap.invest'"
 for py_file in `find natcap/invest -name "*.py" -o -name "*.json"`
