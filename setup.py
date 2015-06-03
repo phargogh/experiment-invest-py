@@ -1,4 +1,10 @@
-"""setup.py module for PyGeoprocessing"""
+"""setup.py module for natcap.invest
+
+InVEST - Integrated Valuation of Ecosystem Services and Tradeoffs
+
+Common functionality provided by setup.py:
+    build_sphinx
+"""
 
 import os
 import sys
