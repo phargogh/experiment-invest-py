@@ -44,7 +44,7 @@ do
     if [ "$?" -ne "0" ]
     then
         # If we can find a file by this name in the invest source tree, we won't need to install it to the system
-        if [ ! -e "`find . -name \"$pkg_name.py\" -o -name \"$pkg_name.pyx\"`" ]
+        if [ ! -e "`find natcap/invest -name \"$pkg_name.py\" -o -name \"$pkg_name.pyx\"`" ]
         then
             echo $pkg_name
         fi
