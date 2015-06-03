@@ -4,10 +4,11 @@
 #
 
 
-invest_dir=../invest-natcap.invest-3/invest_natcap
-for pkg_dir in `ls $invest_dir`
+invest_dir=../invest-natcap.invest-3
+invest_pkgdir=$invest_dir/invest_natcap
+for pkg_dir in `ls $invest_pkgdir`
 do
-    full_filepath=$invest_dir/$pkg_dir
+    full_filepath=$invest_pkgdir/$pkg_dir
     if [ -d $full_filepath ]
     then
         cp -r $full_filepath natcap/invest
@@ -34,6 +35,11 @@ do
         rm -r $full_dirname
     fi
 done
+
+# get the docs from invest-3
+echo "Copying docs"
+cp -r $invest_dir/doc .
+rm -r doc/build
 
 # find/replace invest_natcap with natcap.invest
 echo "Replacing 'invest_natcap' with 'natcap.invest'"
