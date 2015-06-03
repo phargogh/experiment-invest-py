@@ -41,6 +41,27 @@ do
     rm $py_file.bak
 done
 
+# expose the module's execute function by adding to the correct __init__ file
+echo "Exposing entrypoints for models"
+basedirname=natcap/invest
+for name in `ls $basedirname`
+do
+    if [ -d "$basedirname/$name" ]
+    then
+        pkg_python_file=$basedirname/$name/$name.py
+        pkg_init_file=$basedirname/$name/__init__.py
+        if [ ! -e "$pkg_python_file" ]
+        then
+            echo "$pkg_python_file does not exist.  Manually expose the entry point for this package"
+        else
+            echo "from $name import execute" >> $pkg_init_file
+            echo "__all__ = ['execute']" >> $pkg_init_file
+        fi
+    fi
+done
+
+exit 0
+
 # find imports that are not in python's stdlib.
 ENV=invest_test_env
 virtualenv --no-setuptools --clear $ENV
