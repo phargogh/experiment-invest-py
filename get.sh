@@ -13,9 +13,22 @@ do
         cp -r $full_filepath natcap/invest
     fi
 done
-find natcap/invest -name "*.pyc" | xargs rm
-find natcap/invest -name "*.c" | xargs rm
-find natcap/invest -name "*.cpp" | xargs rm
+
+# remove cythonized/compiled files
+echo "Removing compiled/cythonized files"
+find natcap/invest -name "*.pyc" \
+    -o -name "*.c" \
+    -o -name "*.cpp" \
+    -o -name "*.orig" \
+    -o -name "*.so" | xargs rm
+
+# find/replace invest_natcap with natcap.invest
+echo "Replacing 'invest_natcap' with 'natcap.invest'"
+for py_file in `find natcap/invest -name "*.py" -o -name "*.json"`
+do
+    sed -i .bak 's/invest_natcap/natcap.invest/g' $py_file
+    rm $py_file.bak
+done
 
 # find imports that are not in python's stdlib.
 ENV=invest_test_env
