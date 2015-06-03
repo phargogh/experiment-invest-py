@@ -43,7 +43,7 @@ rm -r doc/build
 
 # find/replace invest_natcap with natcap.invest
 echo "Replacing 'invest_natcap' with 'natcap.invest'"
-for py_file in `find natcap/invest -name "*.py" -o -name "*.json"`
+for py_file in `find doc natcap/invest -name "*.py" -o -name "*.json" -o -name "*.rst"`
 do
     sed -i .bak 's/invest_natcap/natcap.invest/g' $py_file
     rm $py_file.bak
