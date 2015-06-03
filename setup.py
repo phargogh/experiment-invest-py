@@ -126,6 +126,7 @@ setup(
     url='http://bitbucket.org/jdouglass/invest-py',
     namespace_packages=['natcap'],
     packages=[
+        'natcap',
         'natcap.invest',
         'natcap.invest.crop_production',
         'natcap.invest.blue_carbon',
