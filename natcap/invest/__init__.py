@@ -13,9 +13,15 @@ import distutils.version
 import build_utils
 
 try:
-    __version__ = build_utils.invest_version()
-except:
-    __version__ = 'dev'
+    # pygeoprocessing/version.py written for setuptools distributions.
+    from version import version
+    __version__ = version
+except ImportError:
+    # setuptools_scm fetches the version from .hg_archive, or from
+    # hg, as needed.
+    from setuptools_scm import get_version
+    __version__ = get_version()
+    version = __version__  # sets a separate VERSION attribute than __version__
 
 def is_release():
     """Returns a boolean indicating whether this invest release is actually a
