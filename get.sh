@@ -11,6 +11,8 @@ do
     if [ -d $full_filepath ]
     then
         cp -r $full_filepath natcap/invest
+    else
+        cp $full_filepath natcap/invest  # when it's just a python file
     fi
 done
 
@@ -27,7 +29,7 @@ echo "Removing any empty package folders"
 for dirname in `ls natcap/invest`
 do
     full_dirname=natcap/invest/$dirname
-    if [ "`ls $full_dirname`" = "" ]
+    if [ "`ls $full_dirname`" = "" ]  && [ -d "$full_dirname" ]
     then
         rm -r $full_dirname
     fi
